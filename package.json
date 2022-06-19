@@ -1,0 +1,25 @@
+{
+  "name": "monkee-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot made with discord.js",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JagrajAulakh/monkee-bot.git"
+  },
+  "author": "Jagraj Aulakh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JagrajAulakh/monkee-bot/issues"
+  },
+  "homepage": "https://github.com/JagrajAulakh/monkee-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.8.0",
+    "dotenv": "^16.0.1",
+    "node-env": "^0.1.6"
+  }
+}
