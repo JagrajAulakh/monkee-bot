@@ -15,6 +15,7 @@ client.on("ready", () => {
 });
 
 client.on("interactionCreate", async (interaction) => {
+	console.log(interaction);
 	if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
@@ -23,15 +24,16 @@ client.on("interactionCreate", async (interaction) => {
 		console.log("Received command: ping");
 		await interaction.reply("Pong!");
 	} else if (commandName === "roast") {
-		console.log("Received command: roast");
 		const user = interaction.options.getUser("username");
+		console.log(`Roasting ${user.tag}`);
 		await interaction.reply(
-			`<@${interaction.options.get("username").value}> ${
-				ROASTS[Math.floor(Math.random() * ROASTS.length)]
-			}`
+			`${user} ${ROASTS[Math.floor(Math.random() * ROASTS.length)]}`
 		);
-
 	}
+});
+
+client.on("channelCreate", async (interaction) => {
+	await interaction.send("First");
 });
 
 console.log(`TOKEN: ${process.env.DISCORD_BOT_TOKEN}`);
