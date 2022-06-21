@@ -4,8 +4,6 @@ require('dotenv').config();
 
 const { DISCORD_BOT_CLIENT_ID, DISCORD_BOT_GUILD_ID, DISCORD_BOT_TOKEN} = process.env;
 
-console.log(DISCORD_BOT_CLIENT_ID, DISCORD_BOT_GUILD_ID, DISCORD_BOT_TOKEN);
-
 const commands = [
 	{
 		"name": 'ping',
