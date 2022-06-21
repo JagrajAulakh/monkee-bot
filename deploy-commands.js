@@ -27,7 +27,7 @@ const commands = [
 
 const rest = new REST({ version: '9' }).setToken(DISCORD_BOT_TOKEN);
 
-rest.put(Routes.applicationGuildCommands(DISCORD_BOT_CLIENT_ID, DISCORD_BOT_GUILD_ID), { body: commands })
+rest.put(Routes.applicationCommands(DISCORD_BOT_CLIENT_ID), { body: commands })
 	.then(() => console.log('Successfully registered application commands.'))
 	.catch(console.error);
 
