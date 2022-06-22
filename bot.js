@@ -59,6 +59,11 @@ client.on("interactionCreate", async (interaction) => {
 			}`,
 		});
 	}
+	else if (commandName === "snap") {
+		await interaction.deferReply({ephemeral: true});
+		interaction.channel.bulkDelete(interaction.options.getInteger("n"));
+		interaction.editReply({content: "Done!"})
+	}
 });
 
 client.on("channelCreate", async (interaction) => {

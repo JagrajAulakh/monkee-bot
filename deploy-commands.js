@@ -21,6 +21,18 @@ const commands = [
 			},
 		],
 	},
+	{
+		name: "snap",
+		description: "Thanos snap the last `n` messages in this channel",
+		options: [
+			{
+				type: 4,
+				name: "n",
+				description: "Number of messages",
+				required: true,
+			},
+		],
+	},
 ];
 
 const rest = new REST({ version: "9" }).setToken(DISCORD_BOT_TOKEN);
