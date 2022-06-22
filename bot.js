@@ -47,7 +47,6 @@ client.on("interactionCreate", async (interaction) => {
 
 	if (commandName === "ping") {
 		await interaction.deferReply({ ephemeral: true });
-		console.log("Received command: ping");
 		const ping = Date.now() - interaction.createdTimestamp;
 		console.log(`Ping: ${ping}ms`);
 		await interaction.editReply({
@@ -71,16 +70,22 @@ client.on("interactionCreate", async (interaction) => {
 		});
 	} else if (commandName === "snap") {
 		await interaction.deferReply({ ephemeral: true });
-		interaction.channel
-			.bulkDelete(interaction.options.getInteger("n"))
-			.then(async () => {
-				await interaction.editReply({ content: "Done!" });
-			})
-			.catch(async () => {
-				await interaction.editReply(
-					"Permission denied! Cannot delete messages in this channel"
-				);
+		if (interaction.member.permissions.has("ADMINISTRATOR")) {
+			interaction.channel
+				.bulkDelete(interaction.options.getInteger("n"))
+				.then(async () => {
+					await interaction.editReply({ content: "Done!" });
+				})
+				.catch(async () => {
+					await interaction.editReply(
+						"Permission denied! Cannot delete messages in this channel"
+					);
+				});
+		} else {
+			await interaction.editReply({
+				content: "You don't have permissions to delete messages",
 			});
+		}
 	}
 });
 
