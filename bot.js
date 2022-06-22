@@ -58,11 +58,18 @@ client.on("interactionCreate", async (interaction) => {
 				ROASTS[Math.floor(Math.random() * ROASTS.length)]
 			}`,
 		});
-	}
-	else if (commandName === "snap") {
-		await interaction.deferReply({ephemeral: true});
-		interaction.channel.bulkDelete(interaction.options.getInteger("n"));
-		interaction.editReply({content: "Done!"})
+	} else if (commandName === "snap") {
+		await interaction.deferReply({ ephemeral: true });
+		interaction.channel
+			.bulkDelete(interaction.options.getInteger("n"))
+			.then(async () => {
+				await interaction.editReply({ content: "Done!" });
+			})
+			.catch(async () => {
+				await interaction.editReply(
+					"Permission denied! Cannot delete messages in this channel"
+				);
+			});
 	}
 });
 
