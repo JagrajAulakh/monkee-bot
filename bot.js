@@ -46,9 +46,20 @@ client.on("interactionCreate", async (interaction) => {
 	const { commandName } = interaction;
 
 	if (commandName === "ping") {
-		await interaction.deferReply();
+		await interaction.deferReply({ ephemeral: true });
 		console.log("Received command: ping");
-		await interaction.editReply({ content: "Pong!" });
+		const ping = Date.now() - interaction.createdTimestamp;
+		console.log(`Ping: ${ping}ms`);
+		await interaction.editReply({
+			embeds: [
+				{
+					type: "rich",
+					title: "Pong!",
+					description: `Response Time: ${ping}ms`,
+					color: 0x00ff00,
+				},
+			],
+		});
 	} else if (commandName === "roast") {
 		await interaction.deferReply();
 		const user = interaction.options.getUser("username");
