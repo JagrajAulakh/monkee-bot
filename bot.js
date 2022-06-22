@@ -2,6 +2,10 @@ const { Client, Intents } = require("discord.js");
 const { ROASTS } = require("./roasts.js");
 require("dotenv").config();
 
+const sleep = async (t) => {
+	return new Promise((resolve) => setTimeout(resolve, t));
+};
+
 // Delcare all intents that the bot has
 const client = new Client({
 	intents: [
@@ -42,14 +46,18 @@ client.on("interactionCreate", async (interaction) => {
 	const { commandName } = interaction;
 
 	if (commandName === "ping") {
+		await interaction.deferReply();
 		console.log("Received command: ping");
-		await interaction.reply("Pong!");
+		await interaction.editReply({ content: "Pong!" });
 	} else if (commandName === "roast") {
+		await interaction.deferReply();
 		const user = interaction.options.getUser("username");
 		console.log(`Roasting ${user.tag}`);
-		await interaction.reply(
-			`${user} ${ROASTS[Math.floor(Math.random() * ROASTS.length)]}`
-		);
+		await interaction.editReply({
+			content: `${user} ${
+				ROASTS[Math.floor(Math.random() * ROASTS.length)]
+			}`,
+		});
 	}
 });
 
