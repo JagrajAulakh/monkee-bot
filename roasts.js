@@ -57,6 +57,8 @@ const ROASTS = [
 	"I am not ignoring you; I am just giving you a time to understand what you just said.",
 	"Every time I think you can’t get any dumber, you are proving me wrong.",
 	"Where is your off button?",
+	"I will shove a stick so far up your ass that you will be able to bite down on it to deal with the pain",
+	"You've got the social awareness of a doorknob",
 ];
 
-module.exports = {ROASTS};
+module.exports = { ROASTS };
