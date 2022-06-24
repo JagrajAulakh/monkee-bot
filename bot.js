@@ -62,12 +62,26 @@ client.on("interactionCreate", async (interaction) => {
 	} else if (commandName === "roast") {
 		await interaction.deferReply();
 		const user = interaction.options.getUser("username");
-		console.log(`Roasting ${user.tag}`);
-		await interaction.editReply({
-			content: `${user} ${
-				ROASTS[Math.floor(Math.random() * ROASTS.length)]
-			}`,
-		});
+		console.log("Hitting the roast API :flushed:");
+		fetch("https://insult.mattbas.org/api/en/insult.json")
+			.then((resp) => {
+				return resp.json();
+			})
+			.then(async (data) => {
+				console.log(`Roasting ${user.tag}`);
+				await interaction.editReply({
+					content: `${user} ${data.insult}`,
+				});
+				// await interaction.editReply({
+				// 	content: `${user} ${
+				// 		ROASTS[Math.floor(Math.random() * ROASTS.length)]
+				// 	}`,
+				// });
+			})
+			.catch(async (err) => {
+				console.error(err);
+				await interaction.editReply("Could not reach the roast API");
+			});
 	} else if (commandName === "snap") {
 		await interaction.deferReply({ ephemeral: true });
 		if (interaction.member.permissions.has("ADMINISTRATOR")) {
