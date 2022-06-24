@@ -33,7 +33,7 @@ client.on("messageCreate", async (msg) => {
 		const everythingElse = msg.content.substring(
 			match.index + match[0].length
 		);
-		msg.channel.send(`Hi ${everythingElse}, I'm Monkee Bot!`);
+		msg.reply(`Hi ${everythingElse}, ${Math.random()>0.5?"I'm":"myself"} Monkee Bot!`);
 	}
 });
 
