@@ -26,7 +26,7 @@ client.on("messageCreate", async (msg) => {
 	let match;
 	if (
 		msg.author.id !== client.user.id &&
-		(match = msg.content.match("[iI]'?[mM]\\s"))
+		(match = msg.content.match("(^[iI]'?[mM]\\s)|(\\s[iI]'?[mM]\\s)"))
 	) {
 		// Find where the regex matched (it'll get the starting of the match) and add
 		// length of matched term. That will start the substr from after "I'm"
