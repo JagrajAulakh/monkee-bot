@@ -38,7 +38,9 @@ client.on("messageCreate", async (msg) => {
 		if (msg.guild.ownerId != msg.author.id) {
 			msg.member.setNickname(everythingElse).then(() => {
 				msg.channel.send(
-					`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${msg.author}`
+					`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${msg.author}, ${
+						Math.random() > 0.5 ? "I'm" : "myself"
+					} Monkee Bot!`
 				);
 			});
 		} else {
