@@ -34,11 +34,20 @@ client.on("messageCreate", async (msg) => {
 			match.index + match[0].length
 		);
 		console.info(`Dad botting: ${msg.author.tag}. They said: ${msg}`);
-		msg.reply(
-			`Hi ${everythingElse}, ${
-				Math.random() > 0.5 ? "I'm" : "myself"
-			} Monkee Bot!`
-		);
+
+		if (msg.guild.ownerId != msg.author.id) {
+			msg.member.setNickname(everythingElse).then(() => {
+				msg.channel.send(
+					`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${msg.author}`
+				);
+			});
+		} else {
+			msg.reply(
+				`Hi ${everythingElse}, ${
+					Math.random() > 0.5 ? "I'm" : "myself"
+				} Monkee Bot!`
+			);
+		}
 	}
 });
 
