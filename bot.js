@@ -36,20 +36,13 @@ client.on("messageCreate", async (msg) => {
 		console.info(`Dad botting: ${msg.author.tag}. They said: ${msg}`);
 
 		if (msg.guild.ownerId != msg.author.id) {
-			msg.member.setNickname(everythingElse).then(() => {
-				msg.channel.send(
-					`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${msg.author}, ${
-						Math.random() > 0.5 ? "I'm" : "myself"
-					} Monkee Bot!`
-				);
-			});
-		} else {
-			msg.reply(
-				`Hi ${everythingElse}, ${
-					Math.random() > 0.5 ? "I'm" : "myself"
-				} Monkee Bot!`
-			);
+			msg.member.setNickname(everythingElse);
 		}
+		msg.reply(
+			`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${everythingElse}, ${
+				Math.random() > 0.5 ? "I'm" : "myself"
+			} Monkee Bot!`
+		);
 	}
 });
 
