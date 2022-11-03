@@ -33,7 +33,12 @@ client.on("messageCreate", async (msg) => {
 		const everythingElse = msg.content.substring(
 			match.index + match[0].length
 		);
-		msg.reply(`Hi ${everythingElse}, ${Math.random()>0.5?"I'm":"myself"} Monkee Bot!`);
+		console.info(`Dad botting: ${msg.author.tag}. They said: ${msg}`);
+		msg.reply(
+			`Hi ${everythingElse}, ${
+				Math.random() > 0.5 ? "I'm" : "myself"
+			} Monkee Bot!`
+		);
 	}
 });
 
