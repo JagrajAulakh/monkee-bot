@@ -38,8 +38,9 @@ client.on("messageCreate", async (msg) => {
 		// Find where the regex matched (it'll get the starting of the match) and add
 		// length of matched term. That will start the substr from after "I'm"
 		const everythingElse = msg.content.substring(
-			match.index + match[0].length
+			msg.content.search(r) + match[0].length
 		);
+		console.log(everythingElse, msg.content, match);
 		console.info(`Dad botting: ${msg.author.tag}. They said: ${msg}`);
 
 		if (msg.guild.ownerId != msg.author.id) {
