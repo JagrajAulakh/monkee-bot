@@ -1,4 +1,4 @@
-const { Client, Intents } = require("discord.js");
+const { Client, GatewayIntentBits } = require("discord.js");
 const { ROASTS } = require("./roasts.js");
 require("dotenv").config();
 
@@ -9,12 +9,13 @@ const sleep = async (t) => {
 // Delcare all intents that the bot has
 const client = new Client({
 	intents: [
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_PRESENCES,
-		Intents.FLAGS.GUILD_MESSAGE_TYPING,
-		Intents.FLAGS.GUILD_MEMBERS,
-		Intents.FLAGS.GUILD_MESSAGES,
-		Intents.FLAGS.DIRECT_MESSAGES,
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildPresences,
+		GatewayIntentBits.GuildMessageTyping,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.DirectMessages,
+		GatewayIntentBits.MessageContent,
 	],
 });
 
