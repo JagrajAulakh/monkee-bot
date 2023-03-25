@@ -1,9 +1,14 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 const { ROASTS } = require("./roasts.js");
+const { badwords } = require("./badwords.js");
 require("dotenv").config();
 
 const sleep = async (t) => {
 	return new Promise((resolve) => setTimeout(resolve, t));
+};
+
+const containsBadWord = (s) => {
+	return badwords.some((w) => s.match(w)); // .some returns true of any element returns true
 };
 
 // Delcare all intents that the bot has
@@ -24,10 +29,11 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", async (msg) => {
-	let match;
+	const r = /i'?m\s|\si'?m\s/gi;
 	if (
 		msg.author.id !== client.user.id &&
-		(match = msg.content.match("(^[iI]'?[mM]\\s)|(\\s[iI]'?[mM]\\s)"))
+		(match = msg.content.match(r)) &&
+		msg.content.substring(0, 8).match(r).length < 2
 	) {
 		// Find where the regex matched (it'll get the starting of the match) and add
 		// length of matched term. That will start the substr from after "I'm"
@@ -39,11 +45,13 @@ client.on("messageCreate", async (msg) => {
 		if (msg.guild.ownerId != msg.author.id) {
 			msg.member.setNickname(everythingElse);
 		}
-		msg.reply(
-			`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${everythingElse}, ${
-				Math.random() > 0.5 ? "I'm" : "myself"
-			} Monkee Bot!`
-		);
+		if (!containsBadWord(msg.content)) {
+			msg.reply(
+				`${Math.random() > 0.5 ? "Hi" : "Wassup"} ${everythingElse}, ${
+					Math.random() > 0.5 ? "I'm" : "myself"
+				} Monkee Bot!`
+			);
+		}
 	}
 });
 
