@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 const { ROASTS } = require("./roasts.js");
-const { badwords } = require("./badwords.js");
+const { badwords, mikiReply } = require("./badwords.js");
 require("dotenv").config();
 
 const sleep = async (t) => {
@@ -53,6 +53,9 @@ client.on("messageCreate", async (msg) => {
 				} Monkee Bot!`
 			);
 		}
+	}
+	else if (msg.author.id === "160105994217586689") {
+		msg.reply(mikiReply);
 	}
 });
 
