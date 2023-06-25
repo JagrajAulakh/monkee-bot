@@ -29,7 +29,7 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", async (msg) => {
-	const r = /i'?m\s|\si'?m\s/gi;
+	const r = /\s?i('|’)?m\s/gi;
 	if (
 		msg.author.id !== client.user.id &&
 		(match = msg.content.match(r)) &&
