@@ -54,9 +54,6 @@ client.on("messageCreate", async (msg) => {
 			);
 		}
 	}
-	else if (msg.author.id === "160105994217586689") {
-		msg.reply(mikiReply);
-	}
 });
 
 client.on("interactionCreate", async (interaction) => {
